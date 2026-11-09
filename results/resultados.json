@@ -1,0 +1,312 @@
+{
+  "eda": {
+    "n_total": 153520,
+    "n_fraude": 1131,
+    "tasa_fraude": 0.007367118290776446,
+    "n_clientes": 4982,
+    "tipologias": {
+      "account_takeover": 430,
+      "card_testing": 417,
+      "skimming_atm": 161,
+      "sim_swap": 123
+    },
+    "faltantes_pct": {
+      "categoria_comercio": 44.82,
+      "distancia_habitual_km": 7.58,
+      "edad_cliente": 1.5
+    },
+    "montos_negativos": 168,
+    "edades_invalidas": 307,
+    "pct_outliers_iqr_monto": 0.06502735799895779,
+    "tasa_fraude_en_outliers": 0.024241210057097066,
+    "corr_top": {
+      "dispositivo_nuevo": 0.288,
+      "beneficiario_nuevo": 0.213,
+      "intentos_fallidos_24h": 0.154,
+      "es_internacional": 0.15,
+      "log_seg_desde_anterior": -0.083,
+      "provincia_distinta": 0.062,
+      "distancia_habitual_km": 0.054,
+      "hora_cos": 0.052
+    },
+    "pares_alta_corr": [
+      [
+        "log_monto",
+        "desvio_monto_cliente",
+        0.84
+      ]
+    ]
+  },
+  "split": {
+    "train": 107464,
+    "val": 15352,
+    "test": 30704,
+    "fraude_train": 836,
+    "fraude_val": 93,
+    "fraude_test": 202,
+    "n_features": 51,
+    "corte_train": "2026-10-14 21:49:33.400000",
+    "corte_val": "2026-10-20 08:11:37.600000"
+  },
+  "supervisado_referencia": {
+    "HGB + ponderación de clases": {
+      "Precision": 0.9393939393939394,
+      "Recall": 0.9207920792079208,
+      "F1_fraude": 0.93,
+      "AUC_ROC": 0.9993849616093994,
+      "AUC_PR": 0.9723889645474555,
+      "Latencia_ms_10k": 36.758382000016354,
+      "Entrenamiento_s": 3.843686560999913
+    },
+    "HGB + SMOTE": {
+      "Precision": 0.9791666666666666,
+      "Recall": 0.9306930693069307,
+      "F1_fraude": 0.9543147208121827,
+      "AUC_ROC": 0.9970927080905586,
+      "AUC_PR": 0.9761939828122893,
+      "Latencia_ms_10k": 90.09202700008245,
+      "Entrenamiento_s": 5.829396823000025
+    }
+  },
+  "tabla": {
+    "Isolation Forest": {
+      "Precision": 0.3416,
+      "Recall": 0.2723,
+      "F1_fraude": 0.303,
+      "F1_macro": 0.6494,
+      "F1_ponderado": 0.9913,
+      "AUC_ROC": 0.9609,
+      "AUC_PR": 0.2889,
+      "Latencia_ms_10k": 267.7153,
+      "Entrenamiento_s": 6.4348,
+      "umbral": 0.5393,
+      "Cumple_500ms": true,
+      "Indice_prec_latencia": 0.2889
+    },
+    "One-Class SVM (Nyström)": {
+      "Precision": 0.3557,
+      "Recall": 0.2624,
+      "F1_fraude": 0.302,
+      "F1_macro": 0.649,
+      "F1_ponderado": 0.9914,
+      "AUC_ROC": 0.9371,
+      "AUC_PR": 0.2703,
+      "Latencia_ms_10k": 56.9485,
+      "Entrenamiento_s": 0.9114,
+      "umbral": 0.0237,
+      "Cumple_500ms": true,
+      "Indice_prec_latencia": 0.2703
+    },
+    "Autoencoder denso": {
+      "Precision": 0.2389,
+      "Recall": 0.2673,
+      "F1_fraude": 0.2523,
+      "F1_macro": 0.6235,
+      "F1_ponderado": 0.9899,
+      "AUC_ROC": 0.9314,
+      "AUC_PR": 0.1952,
+      "Latencia_ms_10k": 74.4392,
+      "Entrenamiento_s": 26.7993,
+      "umbral": 0.2817,
+      "Cumple_500ms": true,
+      "Indice_prec_latencia": 0.1952
+    },
+    "LSTM-Autoencoder": {
+      "Precision": 0.1938,
+      "Recall": 0.3069,
+      "F1_fraude": 0.2375,
+      "F1_macro": 0.6155,
+      "F1_ponderado": 0.9885,
+      "AUC_ROC": 0.8649,
+      "AUC_PR": 0.1669,
+      "Latencia_ms_10k": 368.3795,
+      "Entrenamiento_s": 68.8589,
+      "umbral": 0.4231,
+      "Cumple_500ms": true,
+      "Indice_prec_latencia": 0.1669
+    },
+    "LOF": {
+      "Precision": 0.5185,
+      "Recall": 0.3465,
+      "F1_fraude": 0.4154,
+      "F1_macro": 0.7061,
+      "F1_ponderado": 0.9929,
+      "AUC_ROC": 0.9365,
+      "AUC_PR": 0.4048,
+      "Latencia_ms_10k": 1872.153,
+      "Entrenamiento_s": 7.5832,
+      "umbral": 1.5184,
+      "Cumple_500ms": false,
+      "Indice_prec_latencia": 0.0
+    }
+  },
+  "mejor": "Isolation Forest",
+  "arquitecturas": {
+    "Isolation Forest": {
+      "arquitectura": "Ensamble de 300 árboles de aislamiento",
+      "hiper": "n_estimators=300, max_samples=512, max_features=0.8"
+    },
+    "LOF": {
+      "arquitectura": "k-NN con densidad local (40k puntos de referencia)",
+      "hiper": "n_neighbors=35, novelty=True, métrica euclídea"
+    },
+    "Autoencoder denso": {
+      "arquitectura": "Dense 51-64-32-8-32-64-51",
+      "hiper": "ReLU, dropout=0.1, L2=1e-5, Adam lr=1e-3, batch=512, early stopping (paciencia 4)"
+    },
+    "LSTM-Autoencoder": {
+      "arquitectura": "LSTM(48)-RepeatVector(8)-LSTM(48)-TimeDistributed(Dense(51))",
+      "hiper": "ventana=8 tx/cliente, Adam lr=1e-3, batch=256, early stopping (paciencia 3), 60k secuencias"
+    },
+    "One-Class SVM (Nyström)": {
+      "arquitectura": "RBF aproximado (Nyström 300) + SGDOneClassSVM",
+      "hiper": "gamma=0.02, n_components=300, nu=0.01"
+    }
+  },
+  "ensamble": {
+    "Precision": 0.48,
+    "Recall": 0.4158,
+    "F1_fraude": 0.4456,
+    "F1_macro": 0.7211,
+    "F1_ponderado": 0.993,
+    "AUC_ROC": 0.9665,
+    "AUC_PR": 0.4463,
+    "Latencia_ms_10k": 752.004,
+    "Entrenamiento_s": 103.0044,
+    "umbral": 0.9698,
+    "Latencia_ms_10k_paralelo": 368.3795
+  },
+  "recall_tipologia": {
+    "Isolation Forest": {
+      "account_takeover": 0.4265,
+      "card_testing": 0.1529,
+      "sim_swap": 0.5556,
+      "skimming_atm": 0.0968
+    },
+    "LOF": {
+      "account_takeover": 0.4559,
+      "card_testing": 0.2941,
+      "sim_swap": 0.6667,
+      "skimming_atm": 0.0645
+    },
+    "Autoencoder denso": {
+      "account_takeover": 0.5294,
+      "card_testing": 0.1059,
+      "sim_swap": 0.5,
+      "skimming_atm": 0.0
+    },
+    "LSTM-Autoencoder": {
+      "account_takeover": 0.6176,
+      "card_testing": 0.0471,
+      "sim_swap": 0.3333,
+      "skimming_atm": 0.3226
+    },
+    "One-Class SVM (Nyström)": {
+      "account_takeover": 0.4853,
+      "card_testing": 0.1529,
+      "sim_swap": 0.2778,
+      "skimming_atm": 0.0645
+    },
+    "Ensamble (IF + OC-SVM + AE + LSTM-AE)": {
+      "account_takeover": 0.6471,
+      "card_testing": 0.2235,
+      "sim_swap": 0.7778,
+      "skimming_atm": 0.2258
+    }
+  },
+  "cm_mejor": [
+    [
+      30396,
+      106
+    ],
+    [
+      147,
+      55
+    ]
+  ],
+  "latencia_batch": {
+    "batch": [
+      100,
+      500,
+      1000,
+      2500,
+      5000,
+      10000,
+      20000,
+      50000
+    ],
+    "proc_ms": [
+      23.12,
+      31.55,
+      42.57,
+      72.92,
+      151.99,
+      374.31,
+      1097.31,
+      3323.54
+    ],
+    "throughput_tx_s": [
+      4326.16,
+      15845.88,
+      23493.01,
+      34285.16,
+      32896.54,
+      26715.89,
+      18226.4,
+      15044.2
+    ],
+    "e2e_media_ms": [
+      1272.4,
+      6217.98,
+      12400.42,
+      30945.06,
+      61881.28,
+      123817.88,
+      247969.45,
+      620481.4
+    ],
+    "e2e_pico_ms": [
+      284.97,
+      1280.84,
+      2526.14,
+      6259.35,
+      12509.85,
+      25075.02,
+      50483.74,
+      126767.11
+    ]
+  },
+  "shap_top": {
+    "es_internacional": 0.382882,
+    "intentos_fallidos_24h": 0.344453,
+    "dispositivo_nuevo": 0.304075,
+    "segmento_pyme": 0.300801,
+    "tipo_tx_compra_en_linea": 0.271791,
+    "beneficiario_nuevo": 0.270986,
+    "segmento_masivo": 0.269785,
+    "missingindicator_distancia_habitual_km": 0.23463,
+    "canal_ecommerce_tarjeta": 0.234156,
+    "es_quincena": 0.228579,
+    "categoria_comercio_plataforma_digital_internacional": 0.224571,
+    "desvio_monto_cliente": 0.2004
+  },
+  "shap_caso": {
+    "tx": {
+      "tx_id": "TX00136072",
+      "tipologia": "account_takeover",
+      "canal": "app_movil",
+      "tipo_tx": "transferencia_interna",
+      "monto_usd": 7424.87
+    },
+    "contribuciones": {
+      "intentos_fallidos_24h": 1.14763,
+      "dispositivo_nuevo": 0.97305,
+      "beneficiario_nuevo": 0.85458,
+      "segmento_pyme": 0.78311,
+      "missingindicator_distancia_habitual_km": 0.64928,
+      "log_seg_desde_anterior": 0.48154,
+      "log_monto": 0.39655,
+      "desvio_monto_cliente": 0.32828
+    }
+  }
+}
